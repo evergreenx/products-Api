@@ -37,7 +37,11 @@ app.get("/", (req, res) => {
   //   res.status(200).send("Hello World");
 
   res.json(products);
+
+  
 });
+
+
 
 app.all("*", (req, res) => {
   res.status(404).send("404 resource not found");
