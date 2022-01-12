@@ -31,11 +31,12 @@
 
 const express = require("express");
 const app = express();
+const { products } = require("./data");
 
 app.get("/", (req, res) => {
-//   res.status(200).send("Hello World");
+  //   res.status(200).send("Hello World");
 
-  res.json([{ name: "John" }, { name: "Peter" }]);
+  res.json(products);
 });
 
 app.all("*", (req, res) => {
