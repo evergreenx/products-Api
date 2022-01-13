@@ -37,16 +37,37 @@ app.get("/", (req, res) => {
   //   res.status(200).send("Hello World");
 
   res.json(products);
-
-  
 });
 
+// get all products
 
+app.get("/api/products", (req, res) => {
+  let newProducts = products.map((product) => {
+    const { id, name, image, price } = product;
+
+    return { id, name, image, price };
+  });
+
+  res.json(newProducts);
+  //   console.log(newProducts);
+});
+
+// get single products
+app.get("/api/products/:id", (req, res) => {
+  // const {id}
+  const singleproduct = products.find(
+    (product) => product.id === Number(req.params.id)
+  );
+  if (!singleproduct) {
+    res.status(404).send("Product not found");
+  }
+  res.json(singleproduct);
+});
 
 app.all("*", (req, res) => {
   res.status(404).send("404 resource not found");
 });
 
 app.listen(5000, () => {
-  console.log("Server is running on port 4000");
+  console.log("Server is running on port 5000");
 });
